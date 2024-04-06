@@ -24,7 +24,6 @@
 # Output: [1, 3]
 # Explanation: nums[1] + nums[3] gives 15 + 30 which equals 45.
 
-# Solution using external memory
 # TC: O(N)
 # SC: O(N)
 class Solution:
