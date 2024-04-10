@@ -22,7 +22,7 @@ class Solution:
   def longestPalindrome(self, s: str) -> str:
     def max_palindrome(b, e, s, N):
       while b >= 0 and e < N:
-        if not s[b].isalnum() or not s[e].isalnum() or s[b] != s[e]:
+        if s[b] != s[e]:
           return [e-b, s[b+1:e]]
         b -= 1
         e += 1

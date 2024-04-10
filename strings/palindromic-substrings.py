@@ -19,27 +19,28 @@
 # 1 <= s.length <= 1000
 # s consists only of lowercase English letters.
 #
-# TC: O(N)
-# SC: O(N)
+# TC: O(N^2)
+# SC: O(1)
 #
 
 class Solution:
   def countSubstrings(self, s: str) -> int:
-    def count_palindromes(b, e, s, N, palins):
+    def count_palindromes(b, e, s, N):
+      cnt = 0
       while b >= 0 and e < N:
         if s[b] != s[e]:
-          break
-        palins.add((b,e+1))
+          return cnt
+        cnt += 1
         b -= 1
         e += 1
 
-      if b == -1 and e == N:
-        palins.add((b+1,e))
+      return cnt
+
 
     N = len(s)
-    palins = set()
+    total = 0
     for i in range(N):
-      count_palindromes(i, i, s, N, palins)
-      count_palindromes(i, i+1, s, N, palins)
+      total += count_palindromes(i, i, s, N)
+      total += count_palindromes(i, i+1, s, N)
 
-    return len(palins)
+    return total
