@@ -27,3 +27,22 @@
 #
 # NB: The product of any prefix or suffix of nums is guaranteed to fit within a 32-bit signed integer.
 # Follow up: Solve this problem in linear time and constant space.
+#
+# Kadane's Algorithm
+# TC: O(N)
+# SC: O(1)
+class Solution:
+  def maxProduct(self, nums: List[int]) -> int:
+    N = len(nums)
+
+    l = r = 1
+    mx = nums[0]
+    for i in range(N):
+      l = l*nums[i]
+      r = r*nums[N-i-1]
+      mx = max(mx, l, r)
+
+      l = 1 if l == 0 else l
+      r = 1 if r == 0 else r
+
+    return mx
